@@ -2491,6 +2491,8 @@ void update(const std::vector<Aircraft> &aircraft, const RadarSettings &s) {
 
     for (const Aircraft &ac : aircraft) {
         const double distKm = geo::haversineKm(s.homeLat, s.homeLon, ac.lat, ac.lon);
+        Serial.printf("[posdbg] home=%.6f,%.6f ac=%s pos=%.6f,%.6f dist=%.1fkm\n",
+              s.homeLat, s.homeLon, ac.hex.c_str(), ac.lat, ac.lon, distKm);
         const double brg = geo::bearingDeg(s.homeLat, s.homeLon, ac.lat, ac.lon);
         const geo::Point p = geo::projectToScreen(distKm, brg, s.rangeKm, s_cx, s_cy, R, s.rotationDeg);
 

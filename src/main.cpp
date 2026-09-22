@@ -677,6 +677,10 @@ static void loadSettings() {
     // to say, from the network it joined or from Settings.
     g_settings.homeLat = p.getDouble("homeLat", HOME_LAT_DEFAULT);
     g_settings.homeLon = p.getDouble("homeLon", HOME_LON_DEFAULT);
+    // Tlumpy01 Orb fixed home location
+    g_settings.homeLat = 35.945000;
+    g_settings.homeLon = -115.103889;
+  
     // Whether those two mean anything yet. The defaults are 0,0 and are never drawn: until
     // this is true the scope says so instead of guessing, and the feed is not polled.
     //
@@ -686,6 +690,7 @@ static void loadSettings() {
     // stopped their feed on the strength of a key this build invented. A stored coordinate IS
     // an established location; only a device that has never had one gets the new state.
     g_locationSet      = p.getBool("locSet", p.isKey("homeLat"));
+    g_locationSet = true;
     // Range, and below it max-aircraft, are read from the owner's saved settings here and
     // may then be overridden by the active theme in applyThemeSettings(), which runs after
     // this. The CUSTOM_RADAR_RANGE_KM / CUSTOM_RADAR_MAXAC blocks that used to sit in
